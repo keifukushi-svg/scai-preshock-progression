@@ -1,0 +1,11 @@
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.8.0
+xgboost==3.0.0
+lightgbm==4.6.0
+catboost==1.2.8
+optuna==4.3.0
+shap==0.46.0
+boruta==0.4.3
+statsmodels==0.14.2
+scipy==1.13.1
