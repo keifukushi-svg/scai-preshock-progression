@@ -8,7 +8,7 @@ MIMIC-IV version 3.1 (https://doi.org/10.13026/kpb9-mt58). Access requires Physi
 
 ## Environment
 
-Python 3.12.2 with the package versions in `requirements.txt`. Random seeds are fixed (42; 43 for the bootstrap of the 2017–2019 holdout). `catboost_sklearn_patch.py` makes CatBoost 1.2.x work with `CalibratedClassifierCV` in scikit-learn 1.6 or later.
+Python 3.12.2 with the package versions in `requirements.txt`. Random seeds are fixed (42; 43 for the bootstrap of the 2017–2019 cohort). `catboost_sklearn_patch.py` makes CatBoost 1.2.x work with `CalibratedClassifierCV` in scikit-learn 1.6 or later.
 
 ## Run order
 
@@ -19,20 +19,17 @@ Python 3.12.2 with the package versions in `requirements.txt`. Random seeds are 
 | 3 | `03_extract_baseline_treatments.py` | Vasoactive drugs, mechanical circulatory support, medications, PCI |
 | 4 | `04_extract_comorbidities_demographics.py` | Demographics, comorbidities, anthropometrics |
 | 5 | `05_scai_staging.py` | CSWG-SCAI stage at baseline |
-| 6 | `06_extract_24h_variables.py` | CSWG-SCAI stage from the most extreme values within 24 h and the progression outcome |
-| 7 | `07_feature_engineering.py` | Analytic cohort and A/B cohort |
-| 8 | `08_progression_timing.py` | Time of first attainment of stage C/D/E (used in step 11) |
-| 9 | `09_feature_selection_derivation_only.py` | Boruta and variance inflation factor screening in the 2008–2016 derivation cohort |
-| 10 | `10_final_pipeline.py` | Stratified 5-fold cross-validation with Optuna tuning and isotonic calibration; SHAP |
-| 11 | `11_temporal_leakage_sensitivity.py` | Sensitivity analysis masking post-progression values |
-| 12 | `12_calibration_decision_curve.py` | Calibration (ten equal-width bins) and decision curve analysis |
-| 13 | `13_temporal_validation.py` | Temporal validation (2008–2016 → 2017–2019) |
-| 14 | `14_temporal_validation_primary_threshold.py` | Temporal validation metrics at the primary-analysis thresholds |
-| 15 | `15_bootstrap_ci_auroc.py` | Bootstrap 95% confidence intervals and paired AUROC differences |
+| 6 | `06_analytic_cohort.py` | Analytic cohort with the essential baseline measurements, and missing proportions of baseline variables in the stage A/B cohort |
+| 7 | `07_landmark_dataset.py` | Prediction cohort at 6 hours (stage A/B, without stage C/D/E criteria, ICU discharge, or death within 6 h), 46 candidate predictors available at 6 h (the most recent value of each time-varying variable within 0–6 h, with demographics, comorbidities, and baseline medications), and progression between 6 and 24 h |
+| 8 | `08_progression_24h.py` | Progression within 24 h and between 6 and 24 h, in-hospital mortality, the criteria met among progressions, and the 6–24 h staging measurements used in step 12 |
+| 9 | `09_feature_selection.py` | Boruta and variance inflation factor screening in the 2008–2016 development cohort |
+| 10 | `10_validation.py` | Temporal validation (2008–2016 → 2017–2019) and patient-grouped nested cross-validation with Optuna tuning, isotonic calibration, and thresholds selected in development data; bootstrap confidence intervals, calibration, and decision curves |
+| 11 | `11_shap.py` | SHAP values for the CatBoost model developed on 2008–2016 |
+| 12 | `12_sensitivity_analyses.py` | Physiology-based outcome, treatment-only progressions, and lactate, ALT, and pH measurement during follow-up |
 
-`scai_criteria.py` holds the shared definitions (vasoactive drugs, mechanical circulatory support devices, plausible ranges, candidate predictors, and the CSWG-SCAI staging function); `model_utils.py` holds the shared model fitting and evaluation functions.
+`scai_criteria.py` holds the shared definitions (vasoactive drugs, mechanical circulatory support devices, plausible ranges, baseline variables, and the CSWG-SCAI staging function); `model_utils.py` holds the shared model fitting functions.
 
-Tables 1 and 2 used the Mann–Whitney U test for continuous variables and the χ² test (Table 1) or Fisher exact test (Table 2) for categorical variables (SciPy), with the files written in step 7.
+Tables 1 and 2 used the Mann–Whitney U test for continuous variables and the χ² test (Table 1) or Fisher exact test (Table 2) for categorical variables (SciPy), with the files written in steps 6 and 7.
 
 ## License
 

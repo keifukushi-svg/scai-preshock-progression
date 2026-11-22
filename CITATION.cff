@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this code, please cite it as below."
 title: "Analysis code for: Early Progression From SCAI Stage A/B to C/D/E in ICU Patients and its Prediction Using Machine Learning: A MIMIC-IV Study"
-version: 2.0.0
+version: 3.0.0
 license: MIT
 type: software
-abstract: "Python analysis code (cohort assembly, CSWG-SCAI staging, feature selection, machine-learning model development, and validation) for a MIMIC-IV study of 24-hour progression from SCAI shock stage A/B to C/D/E. The repository contains code only; no MIMIC-IV data or trained models."
+abstract: "Python analysis code (cohort assembly, CSWG-SCAI staging, 6-hour landmark dataset, feature selection, machine-learning model development, temporal validation, and nested cross-validation) for a MIMIC-IV study of progression from SCAI shock stage A/B to C/D/E. The repository contains code only; no MIMIC-IV data or trained models."
 authors:
   - family-names: Fukushi
     given-names: Kei
