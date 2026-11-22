@@ -3,7 +3,7 @@ import warnings
 import pandas as pd
 from scai_criteria import VASOACTIVE_ITEMIDS, MCS_ITEMIDS, classify_scai_cswg
 
-DATADIR_ICU  = "/Users/fukushikei/Documents/mimic-iv-3.1/icu"
+DATADIR_ICU  = "/path/to/mimic-iv-3.1/icu"
 OUTDIR       = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
 warnings.filterwarnings("ignore", category=pd.errors.PerformanceWarning)
 

@@ -5,7 +5,7 @@ from scipy import stats
 from statsmodels.stats.proportion import proportion_confint
 from scai_criteria import VASOACTIVE_ITEMIDS, MCS_ITEMIDS, classify_scai_cswg
 
-DATADIR_ICU = "/Users/fukushikei/Documents/mimic-iv-3.1/icu"
+DATADIR_ICU = "/path/to/mimic-iv-3.1/icu"
 OUTDIR      = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
 
 L = 6

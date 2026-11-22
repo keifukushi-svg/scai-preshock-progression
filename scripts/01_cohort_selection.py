@@ -1,8 +1,8 @@
 import pandas as pd
 import os
 
-DATADIR_HOSP = "/Users/fukushikei/Documents/mimic-iv-3.1/hosp"
-DATADIR_ICU  = "/Users/fukushikei/Documents/mimic-iv-3.1/icu"
+DATADIR_HOSP = "/path/to/mimic-iv-3.1/hosp"
+DATADIR_ICU  = "/path/to/mimic-iv-3.1/icu"
 OUTDIR       = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
 os.makedirs(OUTDIR, exist_ok=True)
 

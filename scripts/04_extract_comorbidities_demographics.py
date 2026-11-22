@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-DATADIR_HOSP = "/Users/fukushikei/Documents/mimic-iv-3.1/hosp"
+DATADIR_HOSP = "/path/to/mimic-iv-3.1/hosp"
 OUTDIR       = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
 
 cohort = pd.read_csv(os.path.join(OUTDIR, "01_cohort.csv"),

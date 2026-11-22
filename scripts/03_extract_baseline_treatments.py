@@ -2,8 +2,8 @@ import pandas as pd
 import os
 from scai_criteria import VASOACTIVE_ITEMIDS, VASOACTIVE_CLASSES, MCS_ITEMIDS, MCS_CLASSES
 
-DATADIR_HOSP = "/Users/fukushikei/Documents/mimic-iv-3.1/hosp"
-DATADIR_ICU  = "/Users/fukushikei/Documents/mimic-iv-3.1/icu"
+DATADIR_HOSP = "/path/to/mimic-iv-3.1/hosp"
+DATADIR_ICU  = "/path/to/mimic-iv-3.1/icu"
 OUTDIR       = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
 
 cohort = pd.read_csv(os.path.join(OUTDIR, "01_cohort.csv"),
